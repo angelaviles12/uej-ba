@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad Educativa Juan Bautista Aguirre</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="#" id="home-link" aria-label="Volver a la página de inicio">
+                    <img src="logo.png" alt="Logo U.E. Juan Bautista Aguirre" class="logo">
+                    <h1>Unidad Educativa<br>Juan Bautista Aguirre</h1>
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="main-nav" id="main-nav-menu">
+                <button class="close-btn" id="mobile-menu-close">&times;</button>
+                <ul>
+                    <li class="has-dropdown">
+                        <a href="#nuestra-institucion">NUESTRA INSTITUCIÓN</a>
+                        <ul>
+                            <li><a href="#" data-page="historia">HISTORIA</a></li>
+                            <li class="has-dropdown">
+                                <a href="#" data-page="quienes-somos">¿QUIÉNES SOMOS?</a>
+                                <ul>
+                                    <li><a href="#" data-page="mision">MISIÓN</a></li>
+                                    <li><a href="#" data-page="vision">VISIÓN</a></li>
+                                    <li><a href="#" data-page="valores">VALORES</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" data-page="autoridades">AUTORIDADES</a></li>
+                            <li><a href="#" data-page="docentes">CUERPO DE DOCENTES</a></li>
+                            <li><a href="#" data-page="dece">DECE</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#vida-aguirrense">VIDA AGUIRRENSE</a>
+                        <ul>
+                            <li><a href="#" data-page="consejo-estudiantil">CONSEJO ESTUDIANTIL</a></li>
+                            <li><a href="#" data-page="abanderados">NÓMINA ABANDERADOS</a></li>
+                            <li><a href="#" data-page="cronograma">CRONOGRAMA ESCOLAR</a></li>
+                            <li><a href="#" data-page="feriados">FERIADOS</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#eventos">EVENTOS</a>
+                        <ul>
+                            <li><a href="#" data-page="mes-jba">MES DE JUAN BAUTISTA</a></li>
+                            <li><a href="#" data-page="fiesta-lectura">FIESTA DE LA LECTURA</a></li>
+                            <li><a href="#" data-page="feria-tecnologica">FERIA TECNOLÓGICA</a></li>
+                            <li><a href="#" data-page="arte-cultura">MES DE ARTE Y CULTURA</a></li>
+                            <li><a href="#" data-page="olimpiadas">OLIMPIADAS</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#oferta-academica">OFERTA ACADÉMICA</a>
+                        <ul>
+                            <li><a href="#" data-page="nuestra-oferta">NUESTRA OFERTA ACADÉMICA</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">SISTEMA DE NOTAS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="container">
+        <div id="page-content">
+            <!-- Dynamic content will be loaded here by JavaScript -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Unidad Educativa Juan Bautista Aguirre. Todos los derechos reservados.</p>
+            <p>Dirección: Av. Los Daulis, Via las Maravillas entre Ángel Felicísimo Rojas y Enrique Romero San Lucas | Correo: ue.jba@hotmail.com</p>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

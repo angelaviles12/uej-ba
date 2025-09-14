@@ -1,0 +1,743 @@
+/* --- General Styles --- */
+:root {
+    --primary-color: #003366; /* Navy Blue */
+    --secondary-color: #ffffff; /* White */
+    --accent-color: #ffc107; /* Gold/Yellow */
+    --text-color: #333333;
+    --light-gray: #f4f4f4;
+    --border-radius: 5px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header & Logo --- */
+.header {
+    background-color: var(--secondary-color);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure the home link acts as a flex container for its children (logo and h1) */
+.logo-container a { 
+    display: flex;
+    align-items: center; /* Vertically center the logo and the text */
+    text-decoration: none; /* Remove default underline */
+    color: inherit; /* Inherit color from parent, though h1 sets its own */
+}
+
+.logo {
+    height: 60px;
+    margin-right: 15px;
+}
+
+.logo-container h1 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 600;
+    text-align: center; /* Center the text lines within the h1 element */
+}
+
+/* --- Navigation --- */
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Desktop: row layout for top level */
+}
+
+.main-nav li {
+    position: relative;
+}
+
+.main-nav a {
+    display: block;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 20px 15px;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-nav > ul > li > a:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* --- Dropdown Menus (Desktop) --- */
+.main-nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--secondary-color);
+    min-width: 220px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    flex-direction: column; /* Desktop: column layout for dropdowns */
+}
+
+.main-nav ul ul ul {
+    left: 100%;
+    top: 0;
+    border-radius: var(--border-radius);
+}
+
+.main-nav li:hover > ul {
+    display: flex;
+}
+
+.main-nav ul ul a {
+    padding: 12px 20px;
+    white-space: nowrap;
+}
+
+.main-nav ul ul a:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Hide mobile menu specific elements on desktop */
+.menu-toggle, .close-btn {
+    display: none;
+}
+
+/* --- Main Content --- */
+#main-content {
+    padding: 40px 20px;
+    background-color: var(--secondary-color);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#page-content section { /* Apply basic section styling to dynamically loaded content */
+    animation: fadeIn 0.5s ease-in-out; /* Keep fade in animation */
+}
+
+#page-content h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* New styles for biography content */
+.biography-content {
+    display: flow-root; /* To contain floated elements */
+    text-align: justify; /* Justify text within this container */
+}
+
+.aguirre-portrait {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    width: 350px; /* Slightly larger size for the image */
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.biography-content p {
+    text-align: justify; /* Ensure paragraph text is justified */
+    margin-bottom: 1em; /* Add some spacing between paragraphs */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Carousel Styles (General) --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Adjust as needed for carousel width */
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.carousel-container#historia-carousel {
+    max-width: 700px; /* Slightly smaller for content page context */
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.carousel-images {
+    position: relative;
+    height: 400px; /* Fixed height for the carousel container */
+}
+
+.carousel-container#historia-carousel .carousel-images {
+    height: 350px; /* Slightly smaller height */
+}
+
+.carousel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, crop if necessary */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+}
+
+.carousel-img.active {
+    opacity: 1; /* Show active image */
+    z-index: 1; /* Bring active image to front */
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    z-index: 10;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+.dot.active, .dot:hover {
+    background-color: var(--accent-color); /* Gold color for active/hover */
+    transform: scale(1.1);
+}
+
+/* New styles for ¿Quiénes Somos? image */
+.quienes-somos-image {
+    display: block; /* Ensures it takes its own line */
+    max-width: 100%; /* Makes the image responsive */
+    height: auto; /* Maintains aspect ratio */
+    margin: 30px auto 0 auto; /* Centers the image and adds space above */
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Styles for Autoridades Section */
+.authority-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.authority-card {
+    background-color: var(--light-gray);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex; /* Use flex for internal alignment */
+    flex-direction: column;
+    align-items: center;
+}
+
+.authority-photo {
+    width: 150px; /* Fixed size for portraits */
+    height: 150px;
+    object-fit: cover; /* Crop to fit, maintain aspect ratio */
+    border-radius: 50%; /* Circular image */
+    border: 3px solid var(--accent-color);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.authority-card h3 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+}
+
+.authority-name {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.authority-description {
+    font-style: italic;
+    color: #555;
+    font-size: 0.95rem;
+    flex-grow: 1; /* Allows text to take up available space, pushing footer down */
+    margin-top: auto; /* Pushes content to the bottom if the card expands */
+}
+
+/* Styles for Teacher List */
+.teacher-list-container {
+    margin-top: 20px;
+}
+
+.teacher-list-container h4 {
+    color: var(--primary-color);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--accent-color);
+    padding-bottom: 5px;
+}
+
+.teacher-list {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin-top: 10px; /* Adjust spacing after h4 */
+    columns: 2; /* Display in two columns for better readability */
+    column-gap: 40px; /* Space between columns */
+}
+
+.teacher-list li {
+    background-color: var(--light-gray);
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease-in-out;
+    break-inside: avoid; /* Prevent list items from breaking across columns */
+}
+
+.teacher-list li:hover {
+    transform: translateX(5px);
+}
+
+/* Styles for Nomina Abanderados Section */
+.honor-roll-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .honor-roll-sections {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.jornada-section {
+    background-color: var(--light-gray);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.jornada-section h3 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.honor-card {
+    background-color: var(--secondary-color);
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid var(--accent-color); /* Emphasize with accent color */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.honor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.honor-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.honor-student {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.05rem;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+}
+
+.honor-grade {
+    font-style: italic;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.escort-list {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+}
+
+.escort-list h4 {
+    color: var(--primary-color);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--accent-color);
+    padding-bottom: 5px;
+    font-size: 1rem;
+}
+
+.escort-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.escort-list li {
+    background-color: var(--secondary-color);
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease-in-out;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.escort-list li:hover {
+    transform: translateX(5px);
+}
+
+/* --- Cronograma Section Styles --- */
+#cronograma-content {
+    padding: 20px;
+}
+
+#cronograma-content .intro-text {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #555;
+}
+
+.cronograma-section {
+    background-color: var(--light-gray);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.cronograma-section h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.schedule-list, .event-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.schedule-list li, .event-list li {
+    background-color: var(--secondary-color);
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.schedule-list li:hover, .event-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.schedule-list li strong, .event-list li strong {
+    color: var(--primary-color);
+}
+
+.total-days {
+    text-align: right;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 20px;
+}
+
+.note-text {
+    background-color: rgba(255, 193, 7, 0.1); /* Light accent background */
+    border-left: 5px solid var(--accent-color);
+    padding: 15px 20px;
+    margin-top: 30px;
+    border-radius: var(--border-radius);
+    font-style: italic;
+    color: #555;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.highlight-events {
+    background-color: #f0f8ff; /* A slightly different light background */
+    border: 1px dashed var(--primary-color);
+}
+
+/* Responsive adjustments for cronograma */
+@media (max-width: 768px) {
+    .cronograma-section {
+        padding: 15px;
+    }
+
+    .cronograma-section h3 {
+        font-size: 1.2rem;
+        padding-bottom: 8px;
+    }
+
+    .schedule-list li, .event-list li {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+
+    .intro-text, .total-days, .note-text {
+        font-size: 1rem;
+        text-align: left; /* Adjust text alignment for smaller screens */
+    }
+}
+
+/* --- Mobile Specific Styles (max-width: 768px) --- */
+@media (max-width: 768px) {
+    .header .container {
+        justify-content: space-between;
+        padding: 0 15px; /* Adjust padding for smaller screens */
+    }
+
+    .logo {
+        height: 50px; /* Smaller logo on mobile */
+        margin-right: 10px;
+    }
+
+    .logo-container h1 {
+        font-size: 1rem; /* Smaller text for site title */
+    }
+
+    /* Hamburger Menu Toggle */
+    .menu-toggle {
+        display: flex; /* Show hamburger on mobile */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 1002; /* Above the mobile nav */
+        padding: 5px; /* Increase click area */
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Main Navigation for Mobile */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75%; /* Adjust width as needed */
+        max-width: 300px; /* Cap width for larger tablets in portrait */
+        height: 100%;
+        background-color: var(--primary-color); /* Dark background for mobile menu */
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform 0.3s ease-out;
+        display: flex; /* Use flex for internal layout */
+        flex-direction: column;
+        padding-top: 60px; /* Space for close button */
+        z-index: 1001;
+        overflow-y: auto; /* Enable scrolling for long menus */
+    }
+
+    .main-nav.mobile-active {
+        transform: translateX(0); /* Slide in */
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Stack top-level menu items vertically */
+        width: 100%;
+        padding: 0; /* Remove padding from top-level ul */
+    }
+
+    .main-nav li {
+        width: 100%;
+        position: static; /* Remove position relative for dropdown parents */
+    }
+
+    .main-nav a {
+        color: var(--secondary-color); /* White text for mobile links */
+        padding: 15px 20px;
+        font-weight: 500;
+        width: 100%;
+        box-sizing: border-box; /* Include padding in width */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+    }
+
+    .main-nav > ul > li:last-child > a { /* No border for the last item, if it's the very last */
+        border-bottom: none;
+    }
+    /* Specific adjustment for 'SISTEMA DE NOTAS' as it's often the very last non-dropdown item */
+    .main-nav > ul > li:last-child:not(.has-dropdown) > a {
+        border-bottom: none;
+    }
+    
+    .main-nav a:hover {
+        background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+        color: var(--accent-color);
+    }
+
+    /* Mobile Dropdown Menus */
+    .main-nav ul ul {
+        position: static; /* Stack dropdowns normally */
+        background-color: rgba(0, 0, 0, 0.2); /* Slightly darker background for sub-menus */
+        box-shadow: none;
+        border-radius: 0;
+        display: none; /* Removed !important to allow JS to control display */
+        flex-direction: column; /* Stack sub-items */
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Show nested sub-menus when parent li has 'open' class */
+    .main-nav li.has-dropdown.open > ul {
+        display: flex; /* Display sub-menu when parent is open */
+    }
+
+    .main-nav ul li.has-dropdown > a {
+        position: relative;
+    }
+
+    .main-nav ul li.has-dropdown > a::after {
+        content: '+'; /* Plus icon for expandable menus */
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2em;
+        transition: transform 0.3s ease-in-out;
+        line-height: 1; /* Adjust line-height for correct vertical centering */
+        pointer-events: none; /* Prevent this from interfering with link clicks */
+    }
+
+    .main-nav ul li.has-dropdown.open > a::after {
+        content: '-'; /* Minus icon when open */
+    }
+
+    .main-nav ul ul a {
+        padding-left: 40px; /* Indent sub-menu items */
+        color: var(--secondary-color);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Lighter separator for sub-items */
+    }
+
+    .main-nav ul ul li:last-child a { /* Remove border from last nested sub-item */
+        border-bottom: none;
+    }
+
+    .main-nav ul ul ul a {
+        padding-left: 60px; /* Further indent nested sub-menu items */
+    }
+
+
+    /* Close button for mobile menu */
+    .close-btn {
+        display: block; /* Show close button on mobile */
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        font-size: 2.5rem;
+        background: transparent;
+        border: none;
+        color: var(--secondary-color);
+        cursor: pointer;
+        padding: 5px 10px;
+        z-index: 1002;
+    }
+
+    /* Prevent body scroll when mobile menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    /* Hide desktop dropdown hover behavior on mobile */
+    .main-nav li:hover > ul {
+        display: none;
+    }
+}
